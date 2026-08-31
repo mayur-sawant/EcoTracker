@@ -20,7 +20,7 @@ DATA_DIR = BASE_DIR / "data"
 
 LOG_DIR = BASE_DIR / "logs"
 
-IUCN_PATH = DATA_DIR / "iucn_species.csv"
+IUCN_PATH = DATA_DIR / "iucn_red_list.csv"
 
 LOG_PATH = LOG_DIR / "eco_tracker.log"
 
