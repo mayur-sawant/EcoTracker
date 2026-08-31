@@ -14,7 +14,7 @@ class SpeciesDetector:
             )
 
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel("gemini-1.5-pro")
+        self.model = genai.GenerativeModel("gemini-2.5-flash")
 
 
     def detect(self, image_path):
