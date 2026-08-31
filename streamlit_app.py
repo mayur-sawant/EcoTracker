@@ -494,27 +494,14 @@ else:
             "✅ Species identification completed."
         )
 
-
-        st.markdown(
-            f"""
-            <div class="info-card">
-
-                <div class="species-name">
-
-                    🐾 {result["common_name"]}
-
-                </div>
-
-                <div class="scientific-name">
-
-                    {result["scientific_name"]}
-
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        # Display species info with container styling
+        with st.container(border=True):
+            st.markdown(
+                f"### 🐾 {result['common_name']}"
+            )
+            st.markdown(
+                f"*{result['scientific_name']}*"
+            )
 
 
         # ==========================================
