@@ -13,9 +13,8 @@ class SpeciesDetector:
                 "Gemini API key is missing."
             )
 
-        self.client = genai.Client(
-            api_key=api_key
-        )
+        genai.configure(api_key=api_key)
+        self.model = genai.GenerativeModel("gemini-1.5-flash")
 
 
     def detect(self, image_path):
@@ -54,15 +53,11 @@ Confidence: 0%
 """
 
 
-        response = self.client.models.generate_content(
-
-            model="gemini-2.5-flash",
-
+        response = self.model.generate_content(
             contents=[
                 prompt,
                 image
             ]
-
         )
 
 
