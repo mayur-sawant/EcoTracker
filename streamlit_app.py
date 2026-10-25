@@ -41,123 +41,13 @@ st.set_page_config(
 
 
 # ==================================================
-# CSS
-# ==================================================
-
-st.markdown(
-    """
-    <style>
-
-    .hero {
-
-        padding: 35px;
-
-        border-radius: 22px;
-
-        background:
-        linear-gradient(
-            135deg,
-            #064e3b,
-            #166534
-        );
-
-        color: white;
-
-        margin-bottom: 30px;
-
-    }
-
-
-    .hero h1 {
-
-        font-size: 45px;
-
-        margin-bottom: 8px;
-
-    }
-
-
-    .hero p {
-
-        font-size: 17px;
-
-        opacity: 0.9;
-
-    }
-
-
-    .info-card {
-
-        background: white;
-
-        padding: 25px;
-
-        border-radius: 18px;
-
-        border: 1px solid #d1d5db;
-
-        margin-bottom: 20px;
-
-    }
-
-
-    .species-name {
-
-        font-size: 32px;
-
-        font-weight: 800;
-
-    }
-
-
-    .scientific-name {
-
-        font-size: 18px;
-
-        font-style: italic;
-
-        color: #4b5563;
-
-    }
-
-
-    .metric-card {
-
-        padding: 20px;
-
-        border-radius: 15px;
-
-        background: #f0fdf4;
-
-        border: 1px solid #bbf7d0;
-
-    }
-
-
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-
-# ==================================================
 # HEADER
 # ==================================================
 
-st.markdown(
-    """
-    <div class="hero">
-
-        <h1>🌿 Eco-Tracker</h1>
-
-        <p>
-        AI-powered wildlife identification
-        and conservation monitoring system.
-        </p>
-
-    </div>
-    """,
-    unsafe_allow_html=True
+st.title("🌿 Eco-Tracker")
+st.write(
+    "AI-powered wildlife identification "
+    "and conservation monitoring system."
 )
 
 
