@@ -44,6 +44,18 @@ def load_env_file(path: Path) -> None:
 
 load_env_file(BASE_DIR / ".env")
 
+
+def get_api_key() -> str:
+    api_key = os.getenv("GEMINI_API_KEY", "").strip()
+    if api_key:
+        return api_key
+
+    try:
+        return str(st.secrets.get("GEMINI_API_KEY", "")).strip()
+    except st.errors.StreamlitSecretNotFoundError:
+        return ""
+
+
 DATA_DIR = BASE_DIR / "data"
 
 LOG_DIR = BASE_DIR / "logs"
@@ -161,7 +173,7 @@ else:
     st.header("🔍 Identify Wildlife")
 
 
-    api_key = os.getenv("GEMINI_API_KEY", "").strip()
+    api_key = get_api_key()
 
 
     # ----------------------------------------------
@@ -278,7 +290,7 @@ else:
         if not api_key:
 
             st.error(
-                "🚨 Set GEMINI_API_KEY in the project's .env file."
+                "🚨 Configure GEMINI_API_KEY in the environment or Streamlit secrets."
             )
 
             st.stop()
