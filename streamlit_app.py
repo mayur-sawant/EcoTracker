@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 import tempfile
 
 import streamlit as st
@@ -15,6 +16,33 @@ from src.tracker import EcoTracker
 # ==================================================
 
 BASE_DIR = Path(__file__).resolve().parent
+
+
+def load_env_file(path: Path) -> None:
+    if not path.is_file():
+        return
+
+    for line_number, line in enumerate(path.read_text().splitlines(), start=1):
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+
+        if line.startswith("export "):
+            line = line[len("export "):].strip()
+
+        name, separator, value = line.partition("=")
+        name = name.strip()
+        if not separator or not name:
+            raise ValueError(f"Invalid .env entry on line {line_number}.")
+
+        value = value.strip()
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in {"'", '"'}:
+            value = value[1:-1]
+
+        os.environ.setdefault(name, value)
+
+
+load_env_file(BASE_DIR / ".env")
 
 DATA_DIR = BASE_DIR / "data"
 
@@ -133,19 +161,7 @@ else:
     st.header("🔍 Identify Wildlife")
 
 
-    # ----------------------------------------------
-    # API KEY
-    # ----------------------------------------------
-
-    api_key = st.text_input(
-
-        "Gemini API Key",
-
-        type="password",
-
-        help="Enter your Google Gemini API key."
-
-    )
+    api_key = os.getenv("GEMINI_API_KEY", "").strip()
 
 
     # ----------------------------------------------
@@ -262,7 +278,7 @@ else:
         if not api_key:
 
             st.error(
-                "🚨 Please enter your Gemini API key."
+                "🚨 Set GEMINI_API_KEY in the project's .env file."
             )
 
             st.stop()
